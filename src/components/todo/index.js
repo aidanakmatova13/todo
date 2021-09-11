@@ -26,6 +26,9 @@ const Todo = () =>{
         setNewTodo('')
 
     }
+    const updateTodo = (modified, id) => {
+        setTodos(todos.map(item => item.id === id ? {...item, title: modified} : item    ))
+    }
     return(
         <div className='row offset-md-3 my-5'>
             <div className='col-md-4'>
@@ -36,7 +39,7 @@ const Todo = () =>{
                 <ul className="list-group">
                     {
                         todos.map(item =>
-                            <List item={item} delTodo={delTodo}/>
+                            <List item={item} delTodo={delTodo} updateTodo={updateTodo}/>
                         )
                     }
                 </ul>
