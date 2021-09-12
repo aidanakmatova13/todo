@@ -3,6 +3,7 @@ import {useState} from "react";
 const List = ({item, delTodo, updateTodo}) =>{
     const [edit, setEdit] = useState(false)
     const [modified, setModified] = useState(item.title)
+
     const handleSave = () => {
         updateTodo(modified, item.id)
         setEdit(false)
