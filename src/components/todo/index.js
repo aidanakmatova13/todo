@@ -22,16 +22,16 @@ const Todo = () =>{
                 setNewTodo('')
             })
     }
-    const updateTodo = (modified, id) => {
-        setTodos(todos.map(item => item.id === id ? {...item, title: modified} : item    ))
-    }
+
     useEffect(() =>{
         axios('https://613d36a694dbd600172ab88f.mockapi.io/api/todos')
             .then(({data}) => setTodos(data))
     },[])
 
-
-
+    const updateTodo = (modified, id) => {
+        axios.put(`https://613d36a694dbd600172ab88f.mockapi.io/api/todos/${id}`, {title : modified})
+            .then(({data}) => setTodos(todos.map(item => item.id === id ? data : item)))
+    }
     return(
         <div className='row offset-md-3 my-5'>
             <div className='col-md-4'>
