@@ -33,6 +33,11 @@ const Todo = () => {
         axios.put(`https://613d36a694dbd600172ab88f.mockapi.io/api/todos/${id}`, {title: modified})
             .then(({data}) => setTodos(todos.map(item => item.id === id ? data : item)))
     }
+    const doneTodo = (id, status) => {
+        axios.put(`https://613d36a694dbd600172ab88f.mockapi.io/api/todos/${id}`, {isDone: !status})
+            .then(({data}) => setTodos(todos.map(item => item.id === id ? data : item)))
+    }
+
     return (
         <div className='box offset-md-4 '>
             <Header length={todos?.length}/>
@@ -49,7 +54,7 @@ const Todo = () => {
                     <ul className="list-group">
                         {
                             todos.map(item =>
-                                <List key={item.id} item={item} delTodo={delTodo} updateTodo={updateTodo}/>
+                                <List key={item.id} item={item} delTodo={delTodo} updateTodo={updateTodo} doneTodo={doneTodo}/>
                             )
                         }
                     </ul>
